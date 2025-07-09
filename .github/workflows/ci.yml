@@ -13,4 +13,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install quality tools
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements-dev.text
+
+    - name: Check code formatting
+      run: |
+        black src/ tests/
+        
